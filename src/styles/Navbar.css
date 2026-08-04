@@ -1,0 +1,77 @@
+.nav {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.nav-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo a {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #0f172a; 
+    text-decoration: none;
+    letter-spacing: 1.5px;
+    transition: color 0.2s ease;
+}
+
+.logo a:hover {
+    color: #2563eb; 
+}
+
+/* Menú de opciones */
+.nav-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #475569;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease-in-out;
+    padding: 8px 0;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #2563eb;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #2563eb;
+    transition: width 0.2s ease-in-out;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}

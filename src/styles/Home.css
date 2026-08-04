@@ -1,0 +1,198 @@
+/* --- ESTILOS PARA LA VISTA HOME Y TARJETAS --- */
+
+.home-container {
+  width: 100%;
+  padding-bottom: 80px;
+}
+
+/* Sección Hero / Introducción */
+.hero-section {
+  max-width: 1000px;
+  margin: 70px auto 40px;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.hero-title span {
+  color: #2563eb; /* Azul corporativo NOVA */
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: #475569;
+  max-width: 800px;
+  margin: 0 auto 36px;
+  line-height: 1.6;
+}
+
+/* Botones de acción principal (CTA) */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.btn-primary {
+  background-color: #2563eb;
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+/* Sección de Ventajas y Beneficios */
+.advantages-section {
+  max-width: 1200px;
+  margin: 80px auto 0;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 40px;
+  letter-spacing: -0.5px;
+}
+
+/* Cuadrícula adaptable para las 3 tarjetas */
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  text-align: left;
+}
+
+/* Tarjetas individuales de beneficios */
+.advantage-card {
+  background-color: #ffffff;
+  padding: 32px 28px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.advantage-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.06);
+  border-color: #cbd5e1;
+}
+
+.advantage-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 12px;
+}
+
+.advantage-card p {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* --- ESTILOS PARA LOS ICONOS Y LAS FAQ --- */
+
+/* Estilo para los iconos en las tarjetas de ventajas */
+.advantage-icon {
+  background-color: #eff6ff;
+  color: #2563eb;
+  font-size: 1.8rem;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Contenedor de la sección de Preguntas Frecuentes */
+.faq-section {
+  max-width: 1000px;
+  margin: 100px auto 0;
+  padding: 0 24px;
+  text-align: center;
+}
+
+/* Cuadrícula para acomodar las preguntas frecuentes en dos columnas o una adaptable */
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 24px;
+  text-align: left;
+  margin-top: 40px;
+}
+
+/* Tarjetas individuales de cada pregunta */
+.faq-card {
+  background-color: #ffffff;
+  padding: 28px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faq-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+}
+
+/* Estilo de la pregunta y su icono */
+.faq-question {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+
+.faq-icon {
+  color: #2563eb;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Estilo de la respuesta */
+.faq-answer {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
