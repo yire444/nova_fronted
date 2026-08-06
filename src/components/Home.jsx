@@ -1,9 +1,12 @@
 import React from 'react';
 import '../styles/Home.css';
-// 1. Importamos los iconos que usaremos
 import { HiOutlineDatabase, HiOutlineShieldCheck, HiOutlineClock, HiOutlineQuestionMarkCircle } from 'react-icons/hi';
+import { useNavigate } from 'react-router-dom';
 
 export function Home() {
+
+  const navigate = useNavigate();
+
   return (
     <main className="home-container">
 
@@ -16,7 +19,7 @@ export function Home() {
           Plataforma diseñada para la administración integral del talento humano. Logramos centralizar el 100% de la información de tus empleados, sueldos y contratos en una sola base de datos confiable y segura.
         </p>
         <div className="hero-buttons">
-          <a href="/register" className="btn-primary">Empezar Ahora</a>
+          <a href="/register" className="btn-primary" onClick={() => navigate('/pricing')}>Empezar Ahora</a>
           <a href="/features" className="btn-secondary">Ver Características</a>
         </div>
       </div>
