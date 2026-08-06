@@ -5,7 +5,6 @@ export const PublicNavOptions = [
     { id: 1, option: 'Inicio', url: '/' },
     { id: 2, option: 'Características', url: '/features' },
     { id: 3, option: 'Planes y Precios', url: '/pricing' }, 
-    { id: 3, option: 'Planes y Precios', url: '/pricing' }, 
     { id: 4, option: 'Contacto', url: '/contact' },
     { id: 5, option: 'Iniciar Sesión', url: '/login' },
     { id: 6, option: 'Registrarse', url: '/register' }
