@@ -1,237 +1,275 @@
+/* Contenedor principal de la sección de Precios */
 .pricing-container {
-  max-width: 1200px;
-  margin: 60px auto 90px;
-  padding: 0 24px;
+    background-color: #12151c;
+    color: #f3f4f6;
+    min-height: calc(100vh - 75px);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 80px 24px;
 }
 
+/* Encabezado */
 .pricing-header {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 50px;
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    text-align: center;
 }
 
 .pricing-title {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #0f172a;
-  margin-bottom: 16px;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
 }
 
 .pricing-title span {
-  color: #2563eb;
+    color: #10b981;
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
 }
 
 .pricing-subtitle {
-  color: #475569;
-  font-size: 1.05rem;
+    font-size: 1.1rem;
+    color: #9ca3af;
+    line-height: 1.6;
+    margin-bottom: 35px;
 }
 
-/* Toggle Mensual / Anual */
+/* Interruptor Mensual / Anual */
 .billing-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 30px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #64748b;
+    display: inline-flex;
+    align-items: center;
+    background-color: #181c24;
+    border: 1px solid #282f3d;
+    padding: 6px 16px;
+    border-radius: 30px;
+    gap: 14px;
 }
 
-.billing-toggle .active {
-  color: #0f172a;
+.billing-toggle span {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #9ca3af;
+    transition: color 0.2s ease;
+}
+
+.billing-toggle span.active {
+    color: #ffffff;
 }
 
 .discount-badge {
-  background-color: #dcfce7;
-  color: #16a34a;
-  font-size: 0.75rem;
-  padding: 2px 8px;
-  border-radius: 20px;
-  margin-left: 4px;
-  font-weight: 700;
+    background-color: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 6px;
 }
 
-/* Interruptor visual (Switch) */
+/* Switch de checkbox */
 .switch {
-  position: relative;
-  display: inline-block;
-  width: 48px;
-  height: 24px;
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 24px;
 }
 
 .switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
 .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: #cbd5e1;
-  transition: .3s;
-  border-radius: 24px;
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #282f3d;
+    transition: 0.3s;
+    border-radius: 24px;
 }
 
 .slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: .3s;
-  border-radius: 50%;
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #ffffff;
+    transition: 0.3s;
+    border-radius: 50%;
 }
 
 input:checked + .slider {
-  background-color: #2563eb;
+    background-color: #10b981;
 }
 
 input:checked + .slider:before {
-  transform: translateX(24px);
+    transform: translateX(24px);
 }
 
-/* Grid de Tarjetas */
+/* Cuadrícula de Precios */
 .pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  align-items: stretch;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    align-items: stretch;
 }
 
+/* Tarjeta de Precios Base */
 .pricing-card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  padding: 40px 30px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background-color: #181c24;
+    border: 1px solid #282f3d;
+    border-radius: 16px;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: all 0.3s ease;
 }
 
 .pricing-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    border-color: #374151;
+    transform: translateY(-5px);
 }
 
-/* Tarjeta Destacada */
+/* Tarjeta Popular (Destacada) */
 .pricing-card.popular {
-  border: 2px solid #2563eb;
-  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.1);
+    background-color: #181c24;
+    border: 2px solid #10b981;
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15);
 }
 
 .popular-tag {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #2563eb;
-  color: #ffffff;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 4px 12px;
-  border-radius: 20px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+    position: absolute;
+    top: -14px;
+    right: 30px;
+    background-color: #10b981;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
 }
 
 .pricing-card h3 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 8px;
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin: 0 0 8px 0;
+    font-weight: 700;
 }
 
 .plan-desc {
-  color: #64748b;
-  font-size: 0.9rem;
-  min-height: 40px;
-  margin-bottom: 24px;
+    color: #9ca3af;
+    font-size: 0.9rem;
+    min-height: 40px;
+    margin: 0 0 24px 0;
 }
 
+/* Bloque de precio */
 .price {
-  display: flex;
-  align-items: baseline;
-  gap: 2px;
-  margin-bottom: 24px;
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 30px;
 }
 
 .currency {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #334155;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #10b981;
 }
 
 .amount {
-  font-size: 2.8rem;
-  font-weight: 800;
-  color: #0f172a;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1;
+    margin: 0 4px;
 }
 
 .period {
-  color: #64748b;
-  font-size: 0.9rem;
+    color: #9ca3af;
+    font-size: 0.9rem;
 }
 
+/* Lista de características */
 .features-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 30px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  flex-grow: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 35px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex-grow: 1;
 }
 
 .features-list li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.9rem;
-  color: #334155;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #d1d5db;
+    font-size: 0.95rem;
 }
 
-.features-list svg {
-  color: #16a34a;
-  font-size: 1.1rem;
-  flex-shrink: 0;
+.features-list li svg {
+    font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
-.features-list .disabled {
-  color: #94a3b8;
-  text-decoration: line-through;
+.features-list li svg:not(.hi-x) {
+    color: #10b981;
 }
 
-/* Botones de acción */
+.features-list li .hi-x, 
+.features-list li svg[data-icon="x"],
+.features-list li svg path[d*="M6 18L18 6M6 6l12 12"] {
+    color: #ef4444;
+}
+
+/* Botones de precios */
 .btn-pricing {
-  width: 100%;
-  padding: 12px;
-  background-color: #f1f5f9;
-  color: #0f172a;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    border: 1px solid #282f3d;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    text-decoration: none;
 }
 
 .btn-pricing:hover {
-  background-color: #e2e8f0;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #10b981;
+    color: #10b981;
 }
 
 .btn-primary-pricing {
-  background-color: #2563eb;
-  color: #ffffff;
-  border: none;
+    background-color: #10b981;
+    border-color: #10b981;
+    color: #ffffff;
 }
 
 .btn-primary-pricing:hover {
-  background-color: #1d4ed8;
+    background-color: #059669;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .pricing-title {
+        font-size: 2.2rem;
+    }
+    .pricing-container {
+        padding: 50px 16px;
+    }
 }

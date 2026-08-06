@@ -1,198 +1,204 @@
-/* --- ESTILOS PARA LA VISTA HOME Y TARJETAS --- */
-
+/* Contenedor principal de la vista */
 .home-container {
-  width: 100%;
-  padding-bottom: 80px;
+    background-color: #12151c;
+    color: #f3f4f6;
+    min-height: calc(100vh - 75px);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-bottom: 80px;
 }
 
-/* Sección Hero / Introducción */
+/* 1. Sección Hero (Introducción) */
 .hero-section {
-  max-width: 1000px;
-  margin: 70px auto 40px;
-  padding: 0 24px;
-  text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 100px 24px 60px 24px;
+    text-align: center;
 }
 
 .hero-title {
-  font-size: 3rem;
-  font-weight: 800;
-  color: #0f172a;
-  margin-bottom: 20px;
-  letter-spacing: -0.5px;
-  line-height: 1.2;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
 }
 
 .hero-title span {
-  color: #2563eb; /* Azul corporativo NOVA */
+    color: #10b981;
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
 }
 
 .hero-subtitle {
-  font-size: 1.15rem;
-  color: #475569;
-  max-width: 800px;
-  margin: 0 auto 36px;
-  line-height: 1.6;
+    font-size: 1.15rem;
+    color: #9ca3af;
+    line-height: 1.6;
+    max-width: 750px;
+    margin: 0 auto 40px auto;
 }
 
-/* Botones de acción principal (CTA) */
 .hero-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
 }
 
 .btn-primary {
-  background-color: #2563eb;
-  color: #ffffff;
-  padding: 12px 28px;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+    background-color: #10b981;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
 }
 
 .btn-primary:hover {
-  background-color: #1d4ed8;
+    background-color: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
 }
 
 .btn-secondary {
-  background-color: #ffffff;
-  color: #0f172a;
-  border: 1px solid #cbd5e1;
-  padding: 12px 28px;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    border: 1px solid #282f3d;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
 }
 
 .btn-secondary:hover {
-  background-color: #f1f5f9;
-  border-color: #94a3b8;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #10b981;
+    color: #10b981;
 }
 
-/* Sección de Ventajas y Beneficios */
-.advantages-section {
-  max-width: 1200px;
-  margin: 80px auto 0;
-  padding: 0 24px;
-  text-align: center;
-}
-
+/* Títulos de Secciones */
 .section-title {
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 40px;
-  letter-spacing: -0.5px;
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 50px;
+    letter-spacing: -0.5px;
 }
 
-/* Cuadrícula adaptable para las 3 tarjetas */
+/* 2. Sección de Ventajas / Beneficios */
+.advantages-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 24px;
+}
+
 .advantages-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
-  text-align: left;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
 }
 
-/* Tarjetas individuales de beneficios */
 .advantage-card {
-  background-color: #ffffff;
-  padding: 32px 28px;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background-color: #181c24;
+    border: 1px solid #282f3d;
+    border-radius: 14px;
+    padding: 35px 28px;
+    transition: all 0.3s ease;
 }
 
 .advantage-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.06);
-  border-color: #cbd5e1;
+    border-color: #10b981;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.advantage-icon {
+    font-size: 2.2rem;
+    color: #10b981;
+    margin-bottom: 20px;
+    background: rgba(16, 185, 129, 0.1);
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .advantage-card h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #0f172a;
-  margin-bottom: 12px;
+    font-size: 1.25rem;
+    color: #ffffff;
+    margin-bottom: 12px;
+    font-weight: 700;
 }
 
-.advantage-card p {
-  color: #475569;
-  font-size: 0.95rem;
-  line-height: 1.6;
+.advantage-description {
+    color: #9ca3af;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
 }
 
-/* --- ESTILOS PARA LOS ICONOS Y LAS FAQ --- */
-
-/* Estilo para los iconos en las tarjetas de ventajas */
-.advantage-icon {
-  background-color: #eff6ff;
-  color: #2563eb;
-  font-size: 1.8rem;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 14px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Contenedor de la sección de Preguntas Frecuentes */
+/* 3. Sección de Preguntas Frecuentes (FAQ) */
 .faq-section {
-  max-width: 1000px;
-  margin: 100px auto 0;
-  padding: 0 24px;
-  text-align: center;
+    max-width: 1100px;
+    margin: 40px auto 0 auto;
+    padding: 60px 24px;
 }
 
-/* Cuadrícula para acomodar las preguntas frecuentes en dos columnas o una adaptable */
 .faq-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-  gap: 24px;
-  text-align: left;
-  margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 24px;
 }
 
-/* Tarjetas individuales de cada pregunta */
 .faq-card {
-  background-color: #ffffff;
-  padding: 28px;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: #181c24;
+    border: 1px solid #282f3d;
+    border-radius: 12px;
+    padding: 28px;
+    transition: border-color 0.2s ease;
 }
 
 .faq-card:hover {
-  border-color: #cbd5e1;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+    border-color: #374151;
 }
 
-/* Estilo de la pregunta y su icono */
 .faq-question {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #0f172a;
-  margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .faq-icon {
-  color: #2563eb;
-  font-size: 1.3rem;
-  display: flex;
-  align-items: center;
+    color: #10b981;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
 }
 
-/* Estilo de la respuesta */
 .faq-answer {
-  color: #475569;
-  font-size: 0.95rem;
-  line-height: 1.6;
+    color: #9ca3af;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+    padding-left: 32px;
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.3rem;
+    }
+    
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
 }

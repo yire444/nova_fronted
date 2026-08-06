@@ -37,13 +37,12 @@ export function Contact() {
         </p>
       </div>
 
-      {/* 2. El contenedor general ahora envuelve a AMBOS (info y formulario) */}
       <div className="contact-content">
         
-        {/* Información de contacto (Lado Izquierdo) */}
+        {/* Información de NOVA */}
         <div className="contact-info">
           <h3>Información de Soporte</h3>
-          <p>Estamos listos para escalar la gestión de tu talento humano.</p>
+          <p>Estamos listos para escalar la gestión de tu talento emprendimiento.</p>
           
           <div className="info-item">
             <HiMail className="info-icon" />
@@ -59,10 +58,11 @@ export function Contact() {
           </div>
         </div>
 
-        {/* Formulario (Lado Derecho) */}
+        {/* Formulario*/}
         <div className="contact-form-wrapper">
           {submitted ? (
             <div className="success-message">
+              {/* RESPUESTA DEL FORM */}
               <h3>¡Mensaje enviado con éxito!</h3>
               <p>Gracias por contactarnos. Un asesor se comunicará contigo a la brevedad.</p>
               <button 
@@ -96,6 +96,7 @@ export function Contact() {
                   name="company" 
                   value={formData.company} 
                   onChange={handleChange} 
+                  required
                   placeholder="Ej. Mi Empresa S.A.C."
                 />
               </div>
@@ -119,6 +120,7 @@ export function Contact() {
                   name="phone" 
                   value={formData.phone} 
                   onChange={handleChange} 
+                  required
                   placeholder="+51 987654321"
                 />
               </div>

@@ -1,83 +1,133 @@
-/* --- FOOTER GENERAL --- */
+/* Contenedor general del Footer */
 .footer {
-  background-color: #0f172a;
-  color: #94a3b8;
-  padding: 60px 24px 30px;
-  margin-top: 100px;
-  border-top: 1px solid #1e293b;
-  width: 100%;
+    background-color: #0f1217;
+    color: #9ca3af;
+    border-top: 1px solid #282f3d;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top: 60px;
+    margin-top: auto;
 }
 
-/* Contenedor principal para organizar las columnas en fila */
+/* Contenedor de columnas */
 .footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 40px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid #1e293b;
-  text-align: left; /* Alineado a la izquierda como en tu referencia */
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px 50px 24px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
 }
 
-/* Estilo para la columna del logo y eslogan */
-.footer-col-brand .footer-logo {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: 2px;
-  margin-bottom: 10px;
+/* Columna de Marca (Logo y Slogan) */
+.footer-col-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #10b981;
+    letter-spacing: 2px;
+    margin: 0;
+    text-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
 }
 
 .footer-slogan {
-  font-size: 0.9rem;
-  color: #64748b;
-  line-height: 1.5;
-  margin: 0;
+    font-size: 0.95rem;
+    color: #9ca3af;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 300px;
 }
 
-/* Títulos de cada columna (ej. EXPLORAR, CONTACTO) */
+/* Columnas de Enlaces (Explorar, Contacto, Soporte) */
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 .footer-title {
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: #ffffff;
-  margin-bottom: 20px;
-  text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin: 0 0 4px 0;
 }
 
-/* Listas de enlaces dentro de cada columna */
 .footer-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-.footer-list li a {
-  color: #94a3b8;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.footer-list li a,
+.footer-link-btn {
+    text-decoration: none;
+    color: #9ca3af;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
 }
 
-.footer-list li a:hover {
-  color: #ffffff;
+.footer-list li a:hover,
+.footer-link-btn:hover {
+    color: #10b981;
+    transform: translateX(4px);
 }
 
-/* Copyright inferior centrado */
+/* Iconos dentro de las listas */
+.footer-list svg {
+    font-size: 1.1rem;
+    color: #10b981;
+}
+
+/* Franja inferior de Copyright */
 .footer-bottom {
-  text-align: center;
-  padding-top: 25px;
-  font-size: 0.85rem;
-  color: #64748b;
+    background-color: #0b0d11;
+    border-top: 1px solid #181c24;
+    padding: 20px 24px;
+    text-align: center;
 }
 
 .footer-bottom p {
-  margin: 0;
+    margin: 0;
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+/* Responsividad para pantallas medianas y pequeñas */
+@media (max-width: 900px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+    
+    .footer-col-brand {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 550px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .footer-col-brand {
+        grid-column: span 1;
+    }
 }

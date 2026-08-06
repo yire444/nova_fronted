@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import '../styles/Prices.css';
 import { HiCheck, HiX } from 'react-icons/hi';
+import { Register } from './RegisterModal';
 
 export function Prices() {
-
-  //PARA EL CAMBIO DE PLANES MENSUAL / ANUAL
   const [isAnnual, setIsAnnual] = useState(false);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false); 
 
   return (
     <div className="pricing-container">
@@ -14,7 +14,7 @@ export function Prices() {
       <div className="pricing-header">
         <h1 className="pricing-title">Planes adaptados a tu <span>Empresa</span></h1>
         <p className="pricing-subtitle">
-          Elige el plan ideal para gestionar tu empresa humano de forma eficiente y escalable.
+          Elige el plan ideal para gestionar tu talento humano de forma eficiente y escalable.
         </p>
 
         {/* Botón de cambio mensual / anual */}
@@ -53,7 +53,9 @@ export function Prices() {
             <li><HiX /> Control de Tareas</li>
             <li><HiX /> Planilla y Pagos</li>
           </ul>
-          <button className="btn-pricing">Elegir Plan</button>
+          <button className="btn-pricing" onClick={() => setIsRegisterOpen(true)}>
+            Elegir Plan
+          </button>
         </div>
 
         {/* Plan 2: Business (Destacado) */}
@@ -73,7 +75,9 @@ export function Prices() {
             <li><HiCheck /> Asignación de Tareas</li>
             <li><HiCheck /> Licencias y Permisos</li>
           </ul>
-          <button className="btn-pricing btn-primary-pricing">Elegir Plan</button>
+          <button className="btn-pricing btn-primary-pricing" onClick={() => setIsRegisterOpen(true)}>
+            Elegir Plan
+          </button>
         </div>
 
         {/* Plan 3: Enterprise */}
@@ -92,10 +96,17 @@ export function Prices() {
             <li><HiCheck /> Soporte prioritario 24/7</li>
             <li><HiCheck /> Roles granulares avanzados</li>
           </ul>
-          <button className="btn-pricing">Elegir Plan</button>
+          <button className="btn-pricing" onClick={() => setIsRegisterOpen(true)}>
+            Elegir Plan
+          </button>
         </div>
 
       </div>
+
+      {/* Renderizado condicional del modal de Registro */}
+      {isRegisterOpen && (
+        <Register onClose={() => setIsRegisterOpen(false)} />
+      )}
     </div>
   );
 }

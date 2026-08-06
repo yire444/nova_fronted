@@ -1,11 +1,9 @@
 import React from 'react';
 import '../styles/Home.css';
 import { HiOutlineDatabase, HiOutlineShieldCheck, HiOutlineClock, HiOutlineQuestionMarkCircle } from 'react-icons/hi';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom'; // <-- Corregido con llaves {}
 
 export function Home() {
-
-  const navigate = useNavigate();
 
   return (
     <main className="home-container">
@@ -19,7 +17,9 @@ export function Home() {
           Plataforma diseñada para la administración integral del talento humano. Logramos centralizar el 100% de la información de tus empleados, sueldos y contratos en una sola base de datos confiable y segura.
         </p>
         <div className="hero-buttons">
-          <a href="/register" className="btn-primary" onClick={() => navigate('/pricing')}>Empezar Ahora</a>
+          <Link to="/pricing" className="btn-primary">
+            Empezar Ahora
+          </Link>
           <a href="/features" className="btn-secondary">Ver Características</a>
         </div>
       </div>
@@ -65,8 +65,8 @@ export function Home() {
 
               <div className="faq-card">
                   <h3 className="faq-question">
-                    <span className="faq-icon"><HiOutlineQuestionMarkCircle /></span>
-                    ¿Cuántas empresas puedo administrar por cuenta?
+                      <span className="faq-icon"><HiOutlineQuestionMarkCircle /></span>
+                      ¿Cuántas empresas puedo administrar por cuenta?
                   </h3>
                   <p className="faq-answer">
                       Por motivos de seguridad y organización, cada cuenta de usuario en NOVA está diseñada para administrar exclusivamente una empresa de manera independiente y centralizada.
@@ -75,8 +75,8 @@ export function Home() {
 
               <div className="faq-card">
                   <h3 className="faq-question">
-                    <span className="faq-icon"><HiOutlineQuestionMarkCircle /></span>
-                    ¿Cómo se gestionan las planillas y los pagos?
+                      <span className="faq-icon"><HiOutlineQuestionMarkCircle /></span>
+                      ¿Cómo se gestionan las planillas y los pagos?
                   </h3>
                   <p className="faq-answer">
                       El sistema cuenta con un módulo de planillas integrado que permite llevar el control de los pagos, sueldos y deducciones de forma ordenada, evitando errores manuales y optimizando los tiempos del área contable.
@@ -85,8 +85,8 @@ export function Home() {
 
               <div className="faq-card">
                   <h3 className="faq-question">
-                    <span className="faq-icon"><HiOutlineQuestionMarkCircle /></span>
-                    ¿Los empleados pueden ver su propia información?
+                      <span className="faq-icon"><HiOutlineQuestionMarkCircle /></span>
+                      ¿Los empleados pueden ver su propia información?
                   </h3>
                   <p className="faq-answer">
                       Sí, los colaboradores cuentan con un acceso propio para consultar sus datos personales, revisar sus pagos, tareas pendientes y mantenerse actualizados de forma directa y segura.
@@ -95,8 +95,8 @@ export function Home() {
 
               <div className="faq-card">
                   <h3 className="faq-question">
-                    <span className="faq-icon"><HiOutlineQuestionMarkCircle /></span>
-                    ¿Qué tan segura está la información de la empresa?
+                      <span className="faq-icon"><HiOutlineQuestionMarkCircle /></span>
+                      ¿Qué tan segura está la información de la empresa?
                   </h3>
                   <p className="faq-answer">
                       Utilizamos estándares de encriptación avanzados y control de accesos estrictos para garantizar que la información crítica y los datos sensibles estén totalmente protegidos.

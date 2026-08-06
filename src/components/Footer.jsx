@@ -1,21 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PublicNavOptions } from './Navbar'; 
 import '../styles/Footer.css';
 import { HiOutlineMail, HiOutlineBookOpen } from 'react-icons/hi';
-import { FaWhatsapp, FaInstagram , FaFacebook} from 'react-icons/fa';
+import { FaWhatsapp, FaInstagram, FaFacebook } from 'react-icons/fa';
+import { ClaimModal } from './ClaimModal'; 
 
 export function Footer() {
+  const [isClaimModalOpen, setIsClaimModalOpen] = useState(false);
+
   return (
     <footer className="footer">
       <div className="footer-container">
         
-        {/* Columna 1: Logo y eslogan */}
+        {/*Logo*/}
         <div className="footer-col-brand">
           <h2 className="footer-logo">NOVA</h2>
           <p className="footer-slogan">Sistema Integral de Gestión de Talento Humano.</p>
         </div>
 
-        {/* Columna 2: Explorar (Tratadas desde el Navbar) */}
+        {/*Explorar*/}
         <div className="footer-col">
           <h3 className="footer-title">EXPLORAR</h3>
           <ul className="footer-list">
@@ -27,7 +30,7 @@ export function Footer() {
           </ul>
         </div>
 
-        {/* Columna 3: Contacto */}
+        {/*Contacto */}
         <div className="footer-col">
           <h3 className="footer-title">CONTACTO</h3>
           <ul className="footer-list">
@@ -46,12 +49,17 @@ export function Footer() {
           </ul>
         </div>
 
-        {/* Columna 4: Soporte */}
+        {/*Soporte */}
         <div className="footer-col">
           <h3 className="footer-title">SOPORTE</h3>
           <ul className="footer-list">
             <li>
-              <a href="/claims"><HiOutlineBookOpen /> Libro de Reclamaciones</a>
+              <button 
+                className="footer-link-btn" 
+                onClick={() => setIsClaimModalOpen(true)}
+              >
+                <HiOutlineBookOpen /> Libro de Reclamaciones
+              </button>
             </li>
           </ul>
         </div>
@@ -61,6 +69,12 @@ export function Footer() {
       <div className="footer-bottom">
         <p>© 2026 NOVA. Todos los derechos reservados.</p>
       </div>
+
+      {/*MOSTRAR MODAL DE RECLAMACIONES*/}
+      <ClaimModal 
+        isOpen={isClaimModalOpen} 
+        onClose={() => setIsClaimModalOpen(false)} 
+      />
     </footer>
   );
 }

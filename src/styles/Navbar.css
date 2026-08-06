@@ -1,11 +1,11 @@
 .nav {
-    background-color: #ffffff;
-    border-bottom: 1px solid #e2e8f0;
+    background-color: #181c24;
+    border-bottom: 1px solid #282f3d;
     position: sticky;
     top: 0;
     z-index: 1000;
     width: 100%;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -22,14 +22,22 @@
 .logo a {
     font-size: 1.6rem;
     font-weight: 800;
-    color: #0f172a; 
+    color: #10b981; 
     text-decoration: none;
     letter-spacing: 1.5px;
-    transition: color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .logo a:hover {
-    color: #2563eb; 
+    color: #34d399;
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+}
+
+/* Contenedor derecho que agrupa el menú */
+.nav-right-side {
+    display: flex;
+    align-items: center;
+    gap: 32px;
 }
 
 /* Menú de opciones */
@@ -37,7 +45,7 @@
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 24px;
     margin: 0;
     padding: 0;
 }
@@ -49,29 +57,15 @@
 
 .nav-link {
     text-decoration: none;
-    color: #475569;
+    color: #9ca3af;
     font-weight: 500;
     font-size: 0.95rem;
+    padding: 6px 14px;
+    border-radius: 6px;
     transition: all 0.2s ease-in-out;
-    padding: 8px 0;
-    position: relative;
 }
 
 .nav-link:hover {
-    color: #2563eb;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #2563eb;
-    transition: width 0.2s ease-in-out;
-}
-
-.nav-link:hover::after {
-    width: 100%;
+    color: #10b981;
+    background-color: rgba(16, 185, 129, 0.1);
 }

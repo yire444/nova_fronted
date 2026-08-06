@@ -1,0 +1,107 @@
+/* Contenedor principal de la sección de características */
+.characteristics-container {
+    background-color: #12151c;
+    color: #f3f4f6;
+    min-height: calc(100vh - 75px);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 80px 24px;
+}
+
+/* Encabezado */
+.characteristics-header {
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    text-align: center;
+}
+
+.characteristics-title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.characteristics-subtitle {
+    font-size: 1.1rem;
+    color: #9ca3af;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Cuadrícula de tarjetas */
+.characteristics-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+/* Tarjeta individual */
+.characteristic-card {
+    background-color: #181c24;
+    border: 1px solid #282f3d;
+    border-radius: 14px;
+    padding: 35px 28px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.characteristic-card:hover {
+    border-color: #10b981;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Contenedor de iconos */
+.card-icon-wrapper {
+    font-size: 2.2rem;
+    color: #10b981;
+    margin-bottom: 20px;
+    background: rgba(16, 185, 129, 0.1);
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.characteristic-card:hover .card-icon-wrapper {
+    background: rgba(16, 185, 129, 0.15);
+}
+
+.card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Títulos y textos dentro de la tarjeta */
+.characteristic-card h3 {
+    font-size: 1.25rem;
+    color: #ffffff;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.characteristic-card p {
+    color: #9ca3af;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+    .characteristics-title {
+        font-size: 2.2rem;
+    }
+    
+    .characteristics-container {
+        padding: 50px 16px;
+    }
+}

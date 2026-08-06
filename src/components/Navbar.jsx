@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Navbar.css';
+import { Register } from './RegisterModal'; 
+import { Login } from './LoginModal';
 
 export const PublicNavOptions = [
     { id: 1, option: 'Inicio', url: '/' },
     { id: 2, option: 'Características', url: '/features' },
     { id: 3, option: 'Planes y Precios', url: '/pricing' }, 
     { id: 4, option: 'Contacto', url: '/contact' },
-    { id: 5, option: 'Iniciar Sesión', url: '/login' },
-    { id: 6, option: 'Registrarse', url: '/register' }
+    { id: 5, option: 'Iniciar Sesión', action: 'login' }, 
+    { id: 6, option: 'Registrarse', action: 'register' }    
 ];
 
 const PrivateNavOptions = [
@@ -20,28 +22,57 @@ const PrivateNavOptions = [
 ];
 
 export const Navbar = ({ isLogged }) => {
+    const [activeModal, setActiveModal] = useState(null);
 
     const currentOptions = isLogged ? PrivateNavOptions : PublicNavOptions;
 
-    return(
-        <nav className='nav'>
-            
-            <div className='nav-container'>
-                <div className='logo'>
-                   <a href={isLogged ? "/dashboard" : "/"}>NOVA</a>
+    const handleMenuClick = (e, item) => {
+        if (item.action) {
+            e.preventDefault();
+            setActiveModal(item.action);
+        }
+    };
+
+    return (
+        <>
+            <nav className='nav'>
+                <div className='nav-container'>
+                    <div className='logo'>
+                        <a href={isLogged ? "/dashboard" : "/"}>NOVA</a>
+                    </div>
+
+                    <div className='nav-right-side'>
+                        <ul className='nav-menu'>
+                            {currentOptions.map((i) => (
+                                <li key={i.id} className='nav-item'>
+                                    <a
+                                        href={i.url || '#'}
+                                        className='nav-link'
+                                        onClick={(e) => handleMenuClick(e, i)}
+                                    >
+                                        {i.option}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
+            </nav>
 
-                <ul className='nav-menu'>
-                    {currentOptions.map((i) => (
-                        <li key={i.id} className='nav-item'>
-                            <a href={i.url} className='nav-link'>
-                                {i.option}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            {/* Modales */}
+            {activeModal === 'register' && (
+                <Register
+                    onClose={() => setActiveModal(null)}
+                    onSwitchToLogin={() => setActiveModal('login')}
+                />
+            )}
 
-        </nav>
+            {activeModal === 'login' && (
+                <Login
+                    onClose={() => setActiveModal(null)}
+                    onSwitchToRegister={() => setActiveModal('register')}
+                />
+            )}
+        </>
     );
 };
