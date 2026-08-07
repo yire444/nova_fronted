@@ -1,15 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HiUser, HiMail, HiPhone, HiLockClosed, HiOfficeBuilding, HiIdentification, HiCash, HiX } from 'react-icons/hi';
 import '../styles/RegisterModal.css';
 
 export function Register({ isOpen, onClose, onSwitchToLogin }) {
+
+  // TRAER LOS TIPOS DE DOCUMENTOS DESDE EL BACKEND
+  const [documentType, setDocumentType] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:9090/api/document-type')
+      .then((response) => response.json())
+      .then((data) => { setDocumentType(data); })
+      .catch((error) => { console.error('Error al obtener los datos', error); });
+  }, []);
+
+  //TRAER LOS PLANES DESDE EL BACKEND
+  const [planType, setPlanType] = useState([]); 
+  useEffect(() => {
+    fetch('http://localhost:9090/api/plan-type')
+    .then((response) => response.json())
+    .then((data) => {setPlanType(data);})
+    .catch((error) => {console.error('Error al obtener los datos', error);});
+  }, []);
+
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     companyName: '',
     companyRuc: '',
     billingCycle: 'mensual',
-    planType: 'Business',
+    planType: '',
     name: '',
     lastName: '',
     documentType: '',
@@ -110,15 +131,12 @@ export function Register({ isOpen, onClose, onSwitchToLogin }) {
                 required
                 className="select-custom-clean"
               >
-                <option value="Starter">
-                  Starter — {prices.starter.perMonth} {isAnnual ? `(Facturado ${prices.starter.total}/año)` : ''}
-                </option>
-                <option value="Business">
-                  Business — {prices.business.perMonth} {isAnnual ? `(Facturado ${prices.business.total}/año)` : ''}
-                </option>
-                <option value="Enterprise">
-                  Enterprise — {prices.enterprise.perMonth} {isAnnual ? `(Facturado ${prices.enterprise.total}/año)` : ''}
-                </option>
+                <option value="">--SELECCIONE UNA PLAN--</option>
+                {planType.map((plan) => (
+                  <option key={plan.id} value={plan.id}>
+                    {plan.name} — {'$' + plan.price}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -190,15 +208,17 @@ export function Register({ isOpen, onClose, onSwitchToLogin }) {
               <HiIdentification className="input-icon-fixed" />
               <select 
                 name="documentType" 
-                value={formData.documentType} 
+                value={formData.documentType}
                 onChange={handleChange}
                 required
                 className="select-custom-clean"
               >
                 <option value="">--SELECCIONE UNA OPCIÓN--</option>
-                <option value="DNI">DNI</option>
-                <option value="Carnet de Extranjeria">Carné de Extranjería</option>
-                <option value="Pasaporte">Pasaporte</option>
+                {documentType.map((type) => (
+                  <option key={type.id} value={type.id}>
+                    {type.name}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
