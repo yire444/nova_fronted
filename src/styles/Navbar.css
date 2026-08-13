@@ -69,3 +69,67 @@
     color: #10b981;
     background-color: rgba(16, 185, 129, 0.1);
 }
+
+/* ========================================================================== */
+/* RESPONSIVE DESIGN (MÓVILES Y TABLETS)                                      */
+/* ========================================================================== */
+
+/* Botón Hamburguesa (oculto en desktop por defecto) */
+.nav-toggle-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.nav-toggle-btn:hover {
+    color: #10b981;
+}
+
+@media screen and (max-width: 768px) {
+    .nav-toggle-btn {
+        display: block; /* Muestra el botón hamburguesa en móviles */
+    }
+
+    /* Transformar el menú en un panel desplegable */
+    .nav-right-side {
+        position: absolute;
+        top: 75px; /* Altura exacta del navbar */
+        left: 0;
+        width: 100%;
+        background-color: #12151c;
+        border-bottom: 1px solid #282f3d;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Clase que se activará desde JS para mostrar el menú desplegable */
+    .nav-right-side.active {
+        max-height: 400px; /* Altura suficiente para albergar las opciones */
+        padding: 16px 24px;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .nav-item {
+        width: 100%;
+    }
+
+    .nav-link {
+        width: 100%;
+        padding: 10px 14px;
+        font-size: 1rem;
+    }
+}

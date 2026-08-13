@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/Navbar.css';
-import { Register } from './RegisterModal'; 
-import { Login } from './LoginModal';
+import { GlobalModal } from './GlobalModal';
 
 export const PublicNavOptions = [
     { id: 1, option: 'Inicio', url: '/' },
@@ -22,7 +21,8 @@ const PrivateNavOptions = [
 ];
 
 export const Navbar = ({ isLogged }) => {
-    const [activeModal, setActiveModal] = useState(null);
+    const [activeModal, setActiveModal] = useState(null); 
+    const [userEmail, setUserEmail] = useState('');       
 
     const currentOptions = isLogged ? PrivateNavOptions : PublicNavOptions;
 
@@ -30,7 +30,13 @@ export const Navbar = ({ isLogged }) => {
         if (item.action) {
             e.preventDefault();
             setActiveModal(item.action);
+            setUserEmail(''); 
         }
+    };
+
+    const handleSwitchModal = (type, data = '') => {
+        setActiveModal(type);
+        if (data) setUserEmail(data);
     };
 
     return (
@@ -59,20 +65,12 @@ export const Navbar = ({ isLogged }) => {
                 </div>
             </nav>
 
-            {/* Modales */}
-            {activeModal === 'register' && (
-                <Register
-                    onClose={() => setActiveModal(null)}
-                    onSwitchToLogin={() => setActiveModal('login')}
-                />
-            )}
-
-            {activeModal === 'login' && (
-                <Login
-                    onClose={() => setActiveModal(null)}
-                    onSwitchToRegister={() => setActiveModal('register')}
-                />
-            )}
+            <GlobalModal
+                modalType={activeModal}
+                modalData={userEmail}
+                onClose={() => setActiveModal(null)}
+                onSwitchModal={handleSwitchModal}
+            />
         </>
     );
 };

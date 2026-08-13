@@ -1,42 +1,53 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { HiCash, HiIdentification, HiLockClosed, HiMail, HiOfficeBuilding, HiPhone, HiUser, HiX } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
-import { HiUser, HiMail, HiPhone, HiLockClosed, HiOfficeBuilding, HiIdentification, HiCash, HiX } from 'react-icons/hi';
 import '../styles/RegisterModal.css';
 
-export function Register({ isOpen, onClose, onSwitchToLogin }) {
+export function Register({ isOpen, onClose, onSwitchToLogin, onRegisterSuccess }) {
 
-  // TRAER LOS TIPOS DE DOCUMENTOS DESDE EL BACKEND
-  const [documentType, setDocumentType] = useState([]);
+  // ESTADOS PARA OBTENER DATOS DESDE EL BACKEND
+  const [documentTypes, setDocumentTypes] = useState([]);
+  const [planTypes, setPlanTypes] = useState([]); 
+  const [billingCycles, setBillingCycles] = useState([]); 
 
+  // OBTENER TIPOS DE DOCUMENTO
   useEffect(() => {
-    fetch('http://localhost:9090/api/document-type')
+    fetch('http://localhost:9090/api/document-type') 
       .then((response) => response.json())
-      .then((data) => { setDocumentType(data); })
-      .catch((error) => { console.error('Error al obtener los datos', error); });
+      .then((data) => { setDocumentTypes(data); })
+      .catch((error) => { console.error('Error al obtener documentos', error); });
   }, []);
 
-  //TRAER LOS PLANES DESDE EL BACKEND
-  const [planType, setPlanType] = useState([]); 
+  // OBTENER CICLOS DE FACTURACIÓN
+  useEffect(() => {
+    fetch('http://localhost:9090/api/billing-cycle')
+      .then((response) => response.json())
+      .then((data) => { setBillingCycles(data); })
+      .catch((error) => { console.error('Error al obtener ciclos', error); });
+  }, []);
+
+  // OBTENER PLANES
   useEffect(() => {
     fetch('http://localhost:9090/api/plan-type')
-    .then((response) => response.json())
-    .then((data) => {setPlanType(data);})
-    .catch((error) => {console.error('Error al obtener los datos', error);});
+      .then((response) => response.json())
+      .then((data) => { setPlanTypes(data); })
+      .catch((error) => { console.error('Error al obtener planes', error); });
   }, []);
 
-
   const navigate = useNavigate();
+
+  // ESTADO ALINEADO CON EL CompanyRequestDto DE JAVA
   const [formData, setFormData] = useState({
-    companyName: '',
-    companyRuc: '',
-    billingCycle: 'mensual',
-    planType: '',
-    name: '',
-    lastName: '',
-    documentType: '',
+    nameCompany: '',
+    ruc: '',
+    billingCycleId: '', 
+    planTypeId: '',
+    nameHolder: '',
+    lastNameHolder: '',
+    documentTypeId: '',
     documentNumber: '',
-    email: '',
-    phone: '',
+    emailCompany: '',
+    phoneCompany: '',
     password: '',
     confirmPassword: ''
   });
@@ -48,8 +59,24 @@ export function Register({ isOpen, onClose, onSwitchToLogin }) {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validaciones estrictas de selectores para evitar enviar IDs vacíos o nulos
+    if (!formData.billingCycleId) {
+      alert("Por favor, selecciona un tipo de facturación.");
+      return;
+    }
+
+    if (!formData.planTypeId) {
+      alert("Por favor, selecciona un plan.");
+      return;
+    }
+
+    if (!formData.documentTypeId) {
+      alert("Por favor, selecciona un tipo de documento.");
+      return;
+    }
 
     if (formData.password !== formData.confirmPassword) {
       alert("Las contraseñas no coinciden. Por favor, revísalas.");
@@ -61,16 +88,51 @@ export function Register({ isOpen, onClose, onSwitchToLogin }) {
       return;
     }
 
-    if (onClose) onClose();
-    navigate('/dashboard');
-  };
+    try {
+      const payload = {
+        nameCompany: formData.nameCompany,
+        ruc: formData.ruc,
+        nameHolder: formData.nameHolder,
+        lastNameHolder: formData.lastNameHolder,
+        documentNumber: formData.documentNumber,
+        emailCompany: formData.emailCompany,
+        phoneCompany: formData.phoneCompany,
+        password: formData.password,
+        confirmPassword: formData.confirmPassword,
+        documentTypeId: Number(formData.documentTypeId),
+        planTypeId: Number(formData.planTypeId),
+        billingCycleId: Number(formData.billingCycleId)
+      };
 
-  // Precios dinámicos según el ciclo
-  const isAnnual = formData.billingCycle === 'anual';
-  const prices = {
-    starter: isAnnual ? { total: '$288', perMonth: '$24/mes' } : { total: '$29', perMonth: '$29/mes' },
-    business: isAnnual ? { total: '$756', perMonth: '$63/mes' } : { total: '$79', perMonth: '$79/mes' },
-    enterprise: isAnnual ? { total: '$1,908', perMonth: '$159/mes' } : { total: '$199', perMonth: '$199/mes' }
+      const response = await fetch('http://localhost:9090/api/companies/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(errorData || "Error al registrar la empresa");
+      }
+
+      const result = await response.json();
+      alert("¡Registro exitoso! Revisa tu correo electrónico para obtener el código de activación de 6 dígitos.");
+
+      if (onClose) onClose();
+      
+      // REDIRIGIR AL MODAL DE ACTIVACIÓN O LOGIN
+      if (onRegisterSuccess) {
+        onRegisterSuccess(formData.emailCompany);
+      } else {
+        onSwitchToLogin();
+      }
+
+    } catch (error) {
+      console.error("Error en el registro:", error);
+      alert("No se pudo completar el registro: " + error.message);
+    }
   };
 
   const handleClose = () => {
@@ -87,11 +149,15 @@ export function Register({ isOpen, onClose, onSwitchToLogin }) {
     if (onSwitchToLogin) onSwitchToLogin(); 
   };
 
+  // VARIABLES DINÁMICAS PARA CALCULAR PRECIOS EN EL FRONTEND
+  const selectedCycle = billingCycles.find(c => c.id == parseInt(formData.billingCycleId));
+  const currentDiscount = selectedCycle ? parseFloat(selectedCycle.discount) : 0;
+  const currentMonths = selectedCycle ? selectedCycle.months : 1;
+
   return (
     <div className="modal-overlay">
       <div className="modal-content-register">
         
-        {/* Botón flotante para cerrar el modal */}
         <button className="modal-close-btn" onClick={handleClose} title="Cerrar">
           <HiX />
         </button>
@@ -103,40 +169,53 @@ export function Register({ isOpen, onClose, onSwitchToLogin }) {
 
         <form onSubmit={handleSubmit} className="register-form">
           
+          {/* Tipo de Facturación */}
           <div className="form-group">
             <label>Tipo de Facturación</label>
             <div className="input-wrapper-clean">
               <HiCash className="input-icon-fixed" />
               <select 
-                name="billingCycle" 
-                value={formData.billingCycle} 
+                name="billingCycleId" 
+                value={formData.billingCycleId} 
                 onChange={handleChange}
                 required
                 className="select-custom-clean"
               >
-                <option value="mensual">Mensual</option>
-                <option value="anual">Anual (¡20% OFF!)</option>
+                <option value="">--SELECCIONE CICLO--</option>
+                {billingCycles.map((cycle) => (
+                  <option key={cycle.id} value={cycle.id}>
+                    {cycle.name} {cycle.discount > 0 ? `(¡${parseInt(cycle.discount)}% OFF!)` : ''}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
 
+          {/* Selecciona el Plan */}
           <div className="form-group">
             <label>Selecciona el Plan</label>
             <div className="input-wrapper-clean">
               <HiCash className="input-icon-fixed" />
               <select 
-                name="planType" 
-                value={formData.planType} 
+                name="planTypeId" 
+                value={formData.planTypeId} 
                 onChange={handleChange}
                 required
+                disabled={!formData.billingCycleId}
                 className="select-custom-clean"
               >
-                <option value="">--SELECCIONE UNA PLAN--</option>
-                {planType.map((plan) => (
-                  <option key={plan.id} value={plan.id}>
-                    {plan.name} — {'$' + plan.price}
-                  </option>
-                ))}
+                <option value="">--SELECCIONE UN PLAN--</option>
+                {planTypes.map((plan) => {
+                  const subtotal = plan.price * currentMonths;
+                  const discountAmount = subtotal * (currentDiscount / 100);
+                  const finalPrice = subtotal - discountAmount;
+
+                  return (
+                    <option key={plan.id} value={plan.id}>
+                      {plan.name} — ${finalPrice.toFixed(2)} {currentMonths > 1 ? '/ año' : '/ mes'}
+                    </option>
+                  );
+                })}
               </select>
             </div>
           </div>
@@ -147,8 +226,8 @@ export function Register({ isOpen, onClose, onSwitchToLogin }) {
               <HiOfficeBuilding className="input-icon-fixed" />
               <input 
                 type="text" 
-                name="companyName" 
-                value={formData.companyName} 
+                name="nameCompany" 
+                value={formData.nameCompany} 
                 onChange={handleChange} 
                 required 
                 placeholder="Ej. Soluciones S.A.C."
@@ -162,8 +241,8 @@ export function Register({ isOpen, onClose, onSwitchToLogin }) {
               <HiIdentification className="input-icon-fixed" />
               <input 
                 type="text" 
-                name="companyRuc" 
-                value={formData.companyRuc} 
+                name="ruc" 
+                value={formData.ruc} 
                 onChange={handleChange} 
                 required 
                 placeholder="Ej. 20123456789"
@@ -178,8 +257,8 @@ export function Register({ isOpen, onClose, onSwitchToLogin }) {
               <HiUser className="input-icon-fixed" />
               <input 
                 type="text" 
-                name="name" 
-                value={formData.name} 
+                name="nameHolder" 
+                value={formData.nameHolder} 
                 onChange={handleChange} 
                 required 
                 placeholder="Ej. Juan José"
@@ -193,8 +272,8 @@ export function Register({ isOpen, onClose, onSwitchToLogin }) {
               <HiUser className="input-icon-fixed" />
               <input 
                 type="text" 
-                name="lastName" 
-                value={formData.lastName} 
+                name="lastNameHolder" 
+                value={formData.lastNameHolder} 
                 onChange={handleChange} 
                 required 
                 placeholder="Ej. García Pérez"
@@ -207,14 +286,14 @@ export function Register({ isOpen, onClose, onSwitchToLogin }) {
             <div className="input-wrapper-clean">
               <HiIdentification className="input-icon-fixed" />
               <select 
-                name="documentType" 
-                value={formData.documentType}
+                name="documentTypeId" 
+                value={formData.documentTypeId}
                 onChange={handleChange}
                 required
                 className="select-custom-clean"
               >
                 <option value="">--SELECCIONE UNA OPCIÓN--</option>
-                {documentType.map((type) => (
+                {documentTypes.map((type) => (
                   <option key={type.id} value={type.id}>
                     {type.name}
                   </option>
@@ -244,8 +323,8 @@ export function Register({ isOpen, onClose, onSwitchToLogin }) {
               <HiMail className="input-icon-fixed" />
               <input 
                 type="email" 
-                name="email" 
-                value={formData.email} 
+                name="emailCompany" 
+                value={formData.emailCompany} 
                 onChange={handleChange} 
                 required 
                 placeholder="correo@empresa.com"
@@ -259,8 +338,8 @@ export function Register({ isOpen, onClose, onSwitchToLogin }) {
               <HiPhone className="input-icon-fixed" />
               <input 
                 type="tel" 
-                name="phone" 
-                value={formData.phone} 
+                name="phoneCompany" 
+                value={formData.phoneCompany} 
                 onChange={handleChange} 
                 required 
                 placeholder="Ingrese su número de celular"
